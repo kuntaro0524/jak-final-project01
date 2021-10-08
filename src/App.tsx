@@ -1,10 +1,14 @@
+import { Button, ChakraProvider } from "@chakra-ui/react";
 import "./styles.css";
 
 export default function App() {
   return (
     <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
+      {/* ChakraUIを利用する場合には以下のように <ChakraProvider> で囲む必要がある */}
+      <ChakraProvider>
+        {/* Buttonって書くだけでそれなりのボタンがもうきれいにできてる！ｓ */}
+        <Button colorScheme="teal"> ボタン </Button>
+      </ChakraProvider>
     </div>
   );
 }
