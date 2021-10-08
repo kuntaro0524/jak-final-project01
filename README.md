@@ -6,9 +6,9 @@ Created with CodeSandbox
 
 - router ディレクトリを作成
 - その中に、HomeRoutes.tsx を作成
--- /home/path みたいな感じで設定する 
--- path の部分をオブジェクトで一つずつ設定する。
--- ここで設定するのはパスとして /home 　をルート（？）にもつパスのことで具体的には
+++ /home/path みたいな感じで設定する 
+++ path の部分をオブジェクトで一つずつ設定する。
+++ ここで設定するのはパスとして /home 　をルート（？）にもつパスのことで具体的には
 
 - /home/
 - /home/user_management
