@@ -1,8 +1,7 @@
 # jak-final-project01
 
 Created with CodeSandbox
-##########################################
-
+---
 # Routing 設定の極意　（をこんなとこに書いても後で見ない気もするが）
 
 - router ディレクトリを作成
@@ -22,5 +21,4 @@ Created with CodeSandbox
 
 * Router.tsx の中で内容を展開していく
   具体的な内容は Router.tsx を確認するのが一番
-
-##########################################
+---
