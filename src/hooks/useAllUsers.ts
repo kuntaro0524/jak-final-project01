@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+// フックスの関数について空の配列で初期化するということについて叱られない設定にしてあげた
 // APIからユーザをすべて取得するというカスタムフック
 // カスタムフック＝関数
 // 返却するのは関数と変数
@@ -5,7 +7,7 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
 
-import { User } from "../types/api/user.ts";
+import { User } from "../types/api/user";
 // メッセージを見せるときにおしゃれに表示するコンポーネントを実装したのでそれを使っていくスタイル
 import { useMessage } from "./useMessage";
 
