@@ -13,7 +13,7 @@ export const useAllUsers = () => {
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState<Array<User>>();
   // 手の混んだメッセージ表示のコンポーネント
-  const { showMessage } = userMessage();
+  const { showMessage } = useMessage();
 
   // 他のコンポーネントで　使うときに「再生成されないように」する
   const getUsers = useCallback(() => {
