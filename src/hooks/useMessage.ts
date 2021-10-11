@@ -10,17 +10,21 @@ type Props = {
 export const useMessage = () => {
   const toast = useToast();
   // ちょっとやそっとでは再生成されないようにuseCallbackを指定しておく
-  const showMessage = useCallback((props: Props) => {
-    const { title, status } = props;
-    toast({
-      // 同じ名称のときはコロンを省略して設定することができる
-      title,
-      status;
-      position: "top",
-      duration: 2000,
-      isClosable: true
-    });
-  }, [toast]);
+  const showMessage = useCallback(
+    (props: Props) => {
+      const { title, status } = props;
+      toast({
+        // 同じ名称のときはコロンを省略して設定することができる
+        // status変数の値によってメッセージの色が変化する！s
+        title,
+        status,
+        position: "top",
+        duration: 2000,
+        isClosable: true
+      });
+    },
+    [toast]
+  );
 
   return { showMessage };
 };
