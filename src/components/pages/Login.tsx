@@ -33,7 +33,14 @@ export const Login: VFC = memo(() => {
             value={userID}
             onChange={onChangeUserId}
           />
-          <PrimaryButton onClick={onClickLogin}> PUSH </PrimaryButton>
+          <PrimaryButton
+            // userIDが空文字列の場合には押せないようにした
+            disabled={userID === ""}
+            loading={loading}
+            onClick={onClickLogin}
+          >
+            PUSH
+          </PrimaryButton>
         </Stack>
       </Box>
     </Flex>
