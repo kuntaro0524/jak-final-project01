@@ -12,6 +12,7 @@ import {
   useDisclosure
 } from "@chakra-ui/react";
 import { memo, VFC } from "react";
+import { MenuIconButton } from "../../atoms/MenuIconButton";
 
 export const Header: VFC = memo(() => {
   // chakra-uiが準備してくれている drawer用のHooks
@@ -40,7 +41,7 @@ export const Header: VFC = memo(() => {
         <Flex
           align="center"
           fontSize="sm"
-          flexGlow={2}
+          flexglow={2}
           // ブレイクポイント以上の画面サイズでなければ表示されない
           // ブレイクポイントの画面サイズなんかはちゃんと公式で調べておくように
           display={{ base: "none", md: "flex" }}
@@ -50,17 +51,7 @@ export const Header: VFC = memo(() => {
           </Box>
           <Link> 設定 </Link>
         </Flex>
-        {/* ハンバーガーメニューをchakra-UIから引っ張ってくる
-      ブレイクポイントごとに表示と非表示の切り替えが可能に */}
-        <IconButton
-          aria-label="メニューボタン"
-          icon={<HamburgerIcon />}
-          size="sm"
-          variant="unstlyed"
-          // スマホのときは 表示、それ以上のときは非表示
-          display={{ base: "block", md: "none" }}
-          onClick={onOpen}
-        />
+        <MenuIconButton onOpen={onOpen} />
       </Flex>
       {/* 左から出す→ "left" */}
       {/* Drawer用のhooksも提供してくれている→ useDisclosure */}
