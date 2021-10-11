@@ -24,8 +24,7 @@ export const Login: VFC = memo(() => {
         <Stack spacing={6} py={4} px={10}>
           <Input placeholder="UserID" />
           <Button bg="teal.400" color="white" _hover={{ opacity: 0.8 }}>
-            {" "}
-            ログイン　{" "}
+            ログイン　
           </Button>
         </Stack>
       </Box>
