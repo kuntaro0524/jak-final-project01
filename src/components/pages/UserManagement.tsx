@@ -1,6 +1,8 @@
 import { Box, Image, Stack, Text, Wrap, WrapItem } from "@chakra-ui/react";
 import { memo, VFC } from "react";
 
+import { UserCard } from "../organisms/layout/user/UserCard";
+
 export const UserManagement: VFC = memo(() => {
   return (
     <>
@@ -9,32 +11,11 @@ export const UserManagement: VFC = memo(() => {
       {/* パディングの値を設定→ break point を設定してパディングの大きさを変化させる */}
       <Wrap p={{ base: 4, md: 10 }}>
         <WrapItem>
-          {/* 縦横の幅やバックグラウンド、角丸、影などを設定 */}
-          <Box
-            w="260px"
-            h="260px"
-            bg="white"
-            borderRadius="10px"
-            shadow="md"
-            p={4}
-            _hover={{ cursor: "pointer", opacity: 0.8 }}
-          >
-            <Stack textAlign="center">
-              <Image
-                borderRadius="full"
-                boxSize="160px"
-                src="https://source.unsplash.com/random"
-                alt="プロフィール画像"
-                m="auto"
-              />
-              <Text fontSize="lg" fontWeight="bold">
-                くんたろー平原
-              </Text>
-              <Text fontSize="sm" color="gray">
-                Kunio Hirata
-              </Text>
-            </Stack>
-          </Box>
+          <UserCard
+            imageUrl="https://source.unsplash.com/random"
+            userName="kuntaro"
+            fullName="Kunio Hirata"
+          />
         </WrapItem>
       </Wrap>
     </>
