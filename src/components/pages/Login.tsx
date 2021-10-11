@@ -9,15 +9,20 @@ import {
 } from "@chakra-ui/react";
 import { ChangeEvent, memo, useState, VFC } from "react";
 import { PrimaryButton } from "../../components/atoms/PrimaryButton";
+import { useAuth } from "../../hooks/useAuth";
 
 // axiosでユーザデータを取得→ID番号でログインができるという簡単な機能を実装していくことに
 export const Login: VFC = memo(() => {
   // userIDとセット関数を定義
   const [userID, setUserID] = useState("");
+  // カスタムフックを利用して認証機能を付与していく
+  const { login, loading } = useAuth();
 
   // イベントに相当する引数は暗記しろって！
   const onChangeUserId = (e: ChangeEvent<HTMLInputElement>) =>
     setUserID(e.target.value);
+
+  const onClickLogin = () => login(userID);
 
   return (
     <Flex align="center" justify="center" height="100vh">
@@ -36,7 +41,7 @@ export const Login: VFC = memo(() => {
             value={userID}
             onChange={onChangeUserId}
           />
-          <PrimaryButton> PUSH </PrimaryButton>
+          <PrimaryButton onClick={onClickLogin}> PUSH </PrimaryButton>
         </Stack>
       </Box>
     </Flex>
