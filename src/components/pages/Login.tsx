@@ -7,10 +7,18 @@ import {
   Input,
   Stack
 } from "@chakra-ui/react";
-import { memo, VFC } from "react";
+import { ChangeEvent, memo, useState, VFC } from "react";
 import { PrimaryButton } from "../../components/atoms/PrimaryButton";
 
+// axiosでユーザデータを取得→ID番号でログインができるという簡単な機能を実装していくことに
 export const Login: VFC = memo(() => {
+  // userIDとセット関数を定義
+  const [userID, setUserID] = useState("");
+
+  // イベントに相当する引数は暗記しろって！
+  const onChangeUserId = (e: ChangeEvent<HTMLInputElement>) =>
+    setUserID(e.target.value);
+
   return (
     <Flex align="center" justify="center" height="100vh">
       {/* 角を丸くしたり、影をつけたりする */}
@@ -23,7 +31,11 @@ export const Login: VFC = memo(() => {
         {/* コンポーネントを等間隔で並べていくのに非常に便利 */}
         {/* y軸やX軸のマージンも設定している */}
         <Stack spacing={6} py={4} px={10}>
-          <Input placeholder="UserID" />
+          <Input
+            placeholder="UserID"
+            value={userID}
+            onChange={onChangeUserId}
+          />
           <PrimaryButton> PUSH </PrimaryButton>
         </Stack>
       </Box>
