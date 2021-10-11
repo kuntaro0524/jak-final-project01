@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { memo, VFC } from "react";
 import { MenuIconButton } from "../../atoms/MenuIconButton";
+import { MenuDrawer } from "../../molecules/MenuDrawer";
 
 export const Header: VFC = memo(() => {
   // chakra-uiが準備してくれている drawer用のHooks
@@ -53,19 +54,7 @@ export const Header: VFC = memo(() => {
         </Flex>
         <MenuIconButton onOpen={onOpen} />
       </Flex>
-      {/* 左から出す→ "left" */}
-      {/* Drawer用のhooksも提供してくれている→ useDisclosure */}
-      {/* https://chakra-ui.com/docs/hooks/use-disclosure */}
-      {/* 講義のまま書いているつもりだが、closeがされない現時点 */}
-      <Drawer placement="left" size="xs" onClose={onClose} isOpen={isOpen}>
-        <DrawerOverlay>
-          <DrawerBody p={0} bg="gray.100">
-            <Button w="100%"> top </Button>
-            <Button w="100%"> ユーザ一覧 </Button>
-            <Button w="100%"> 設定 </Button>
-          </DrawerBody>
-        </DrawerOverlay>
-      </Drawer>
+      <MenuDrawer onClose={onClose} isOpen={isOpen} />
     </>
   );
 });
