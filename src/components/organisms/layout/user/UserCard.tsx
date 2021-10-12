@@ -3,17 +3,20 @@ import { memo, ReactNode, VFC } from "react";
 
 // ボタンの名称を受け取れれば良いので children を受け取るようにする
 type Props = {
+  // 親コンポーネントからidをもらってあげる必要がある
+  id: number;
   // イメージデータのURL
   imageUrl: string;
   userName: string;
   fullName: string;
   // propsで渡される関数に関する記述
-  onClick: () => void;
+  // ModalのためにクリックしたときにユーザIDを取得する（渡す）という設定に変更する
+  onClick: (id: number) => void;
 };
 
 export const UserCard: VFC<Props> = memo((props) => {
   // Propsの定義だけではなくてpropsからちゃんと受け取るように
-  const { imageUrl, userName, fullName, onClick } = props;
+  const { imageUrl, userName, fullName, onClick, id } = props;
   console.log(imageUrl);
   return (
     <>
@@ -28,7 +31,9 @@ export const UserCard: VFC<Props> = memo((props) => {
         p={4}
         _hover={{ cursor: "pointer", opacity: 0.8 }}
         // ここでpropsでもらった関数を定義する
-        onClick={onClick}
+        onClick={() => {
+          onClick(id);
+        }}
       >
         <Stack textAlign="center">
           <Image

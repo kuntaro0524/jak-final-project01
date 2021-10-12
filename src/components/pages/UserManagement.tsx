@@ -26,7 +26,11 @@ export const UserManagement: VFC = memo(() => {
   // いつModal用のカスタムフックのonOpenを呼ぶか？
   // Userをクリックしたときに onOpen (これはModalで用意されているカスタムフックから受け取る関数)
   // 再レンダリング防止のために useCallBack　で囲んであげる
-  const onClickUser = useCallback(() => onOpen(), []);
+  // さらにidを引数として渡すようにしたので引数の型指定もしっかりとしておく
+  const onClickUser = useCallback((id: number) => {
+    console.log(id);
+    onOpen();
+  }, []);
 
   return (
     <>
@@ -45,6 +49,9 @@ export const UserManagement: VFC = memo(() => {
             // マージンを自動にすることで中心寄せが可能に
             <WrapItem key={user.id} mx="auto">
               <UserCard
+                // onClickのときにカードを特定する情報を渡す必要がある→idにしたs
+                // Modalで利用できるようにするため
+                id={user.id}
                 imageUrl="https://source.unsplash.com/random"
                 userName={user.username}
                 fullName={user.name}
