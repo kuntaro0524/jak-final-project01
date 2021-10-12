@@ -25,6 +25,7 @@ export const UserManagement: VFC = memo(() => {
         // これは相当便利やな
         // パディングの値を設定→ break point を設定してパディングの大きさを変化させる
         <Wrap p={{ base: 4, md: 10 }}>
+          {/* ユーザごとにマップを回してレンダリングを行う */}
           {users.map((user) => (
             <WrapItem key={user.id}>
               <UserCard

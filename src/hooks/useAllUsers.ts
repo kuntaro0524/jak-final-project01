@@ -13,6 +13,7 @@ import { useMessage } from "./useMessage";
 
 export const useAllUsers = () => {
   const [loading, setLoading] = useState(false);
+  // 初期配列を渡さないとエラーになる→lintでわかる
   const [users, setUsers] = useState<Array<User>>([]);
   // 手の混んだメッセージ表示のコンポーネント
   const { showMessage } = useMessage();
