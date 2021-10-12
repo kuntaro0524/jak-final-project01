@@ -27,18 +27,23 @@ export const UserManagement: VFC = memo(() => {
 
   // Modalのページをユーザごとに表示するための仕掛け
   const { onSelectUser, selectedUser } = useSelectUser();
-  console.log(selectedUser);
 
   // いつModal用のカスタムフックのonOpenを呼ぶか？
   // Userをクリックしたときに onOpen (これはModalで用意されているカスタムフックから受け取る関数)
   // 再レンダリング防止のために useCallBack　で囲んであげる
   // さらにidを引数として渡すようにしたので引数の型指定もしっかりとしておく
-  const onClickUser = useCallback((id: number) => {
-    console.log(id);
-    // Modal用のカスタムフックで以下のように処理を行う
-    onSelectUser({ id, users });
-    onOpen();
-  }, []);
+  const onClickUser = useCallback(
+    (id: number) => {
+      // Modal用のカスタムフック useSelectUser の中で定義してある関数
+      // 今保持しているusersという配列を渡して id に一致するユーザをゲットする
+      // さらにonOpenを useSelectUser に渡してあげてあちらで表示までやってもらう
+      onSelectUser({ id, users, onOpen });
+      onOpen();
+    },
+    // これまでは鬱陶しいってことで空の配列を入れて頭の行でlintを騙してきた。
+    // 情報が更新されないと困るよというものはカッコに入れて情報を管理する（更新されたら更新するように）必要がある。
+    [users, onSelectUser, onOpen]
+  );
 
   return (
     <>
@@ -69,7 +74,7 @@ export const UserManagement: VFC = memo(() => {
           ))}
         </Wrap>
       )}
-      <UserDetailModal isOpen={isOpen} onClose={onClose} />
+      <UserDetailModal user={selectedUser} isOpen={isOpen} onClose={onClose} />
     </>
   );
 });
