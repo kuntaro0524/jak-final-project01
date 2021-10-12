@@ -36,9 +36,10 @@ export const UserManagement: VFC = memo(() => {
     (id: number) => {
       // Modal用のカスタムフック useSelectUser の中で定義してある関数
       // 今保持しているusersという配列を渡して id に一致するユーザをゲットする
+      // →　selectedUser　が更新される
       // さらにonOpenを useSelectUser に渡してあげてあちらで表示までやってもらう
       onSelectUser({ id, users, onOpen });
-      onOpen();
+      // onOpen();
     },
     // これまでは鬱陶しいってことで空の配列を入れて頭の行でlintを騙してきた。
     // 情報が更新されないと困るよというものはカッコに入れて情報を管理する（更新されたら更新するように）必要がある。
