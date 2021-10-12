@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
   Center,
+  Modal,
   Spinner,
   useDisclosure,
   Wrap,
@@ -11,6 +12,7 @@ import { useAllUsers } from "../../hooks/useAllUsers";
 
 import { UserCard } from "../organisms/layout/user/UserCard";
 import { UserDetailModal } from "../organisms/layout/UserDetailModal";
+import { useSelectUser } from "../../hooks/useSelectUser";
 
 export const UserManagement: VFC = memo(() => {
   // カスタムフックの関数から以下の関数やbooleanを取得する
@@ -23,12 +25,18 @@ export const UserManagement: VFC = memo(() => {
   // Modalの表示に必要な３つのパラメタをModal用のカスタムフックから取得
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  // Modalのページをユーザごとに表示するための仕掛け
+  const { onSelectUser, selectedUser } = useSelectUser();
+  console.log(selectedUser);
+
   // いつModal用のカスタムフックのonOpenを呼ぶか？
   // Userをクリックしたときに onOpen (これはModalで用意されているカスタムフックから受け取る関数)
   // 再レンダリング防止のために useCallBack　で囲んであげる
   // さらにidを引数として渡すようにしたので引数の型指定もしっかりとしておく
   const onClickUser = useCallback((id: number) => {
     console.log(id);
+    // Modal用のカスタムフックで以下のように処理を行う
+    onSelectUser({ id, users });
     onOpen();
   }, []);
 

@@ -18,7 +18,8 @@ export const useSelectUser = () => {
     // その情報から一致するユーザを見つける
     const targetUser = users.find((user) => user.id === id);
     // 検索で一致したユーザ情報をselected userにセットする
-    setSelectedUser(targetUser);
+    // targetUserが未定義のときには null を設定すると（？？演算子）
+    setSelectedUser(targetUser ?? null);
   }, []);
   return { onSelectUser, selectedUser };
 };
