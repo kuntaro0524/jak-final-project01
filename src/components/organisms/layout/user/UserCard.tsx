@@ -7,14 +7,18 @@ type Props = {
   imageUrl: string;
   userName: string;
   fullName: string;
+  // propsで渡される関数に関する記述
+  onClick: () => void;
 };
 
 export const UserCard: VFC<Props> = memo((props) => {
-  const { imageUrl, userName, fullName } = props;
+  // Propsの定義だけではなくてpropsからちゃんと受け取るように
+  const { imageUrl, userName, fullName, onClick } = props;
   console.log(imageUrl);
   return (
     <>
       {/* 縦横の幅やバックグラウンド、角丸、影などを設定 */}
+      {/* ボックスのどっかをクリックしたときに onClick を呼ぶようにする */}
       <Box
         w="260px"
         h="260px"
@@ -23,6 +27,8 @@ export const UserCard: VFC<Props> = memo((props) => {
         shadow="md"
         p={4}
         _hover={{ cursor: "pointer", opacity: 0.8 }}
+        // ここでpropsでもらった関数を定義する
+        onClick={onClick}
       >
         <Stack textAlign="center">
           <Image
