@@ -30,6 +30,7 @@ export const UserManagement: VFC = memo(() => {
 
   // ログイン情報を保持している context がきちんと参照できているかどうかを確認
   const { loginUser } = useLoginUser();
+  console.log("LOGINUSER=");
   console.log(loginUser);
 
   // いつModal用のカスタムフックのonOpenを呼ぶか？
@@ -79,7 +80,12 @@ export const UserManagement: VFC = memo(() => {
           ))}
         </Wrap>
       )}
-      <UserDetailModal user={selectedUser} isOpen={isOpen} onClose={onClose} />
+      <UserDetailModal
+        user={selectedUser}
+        isOpen={isOpen}
+        onClose={onClose}
+        isAdmin={loginUser?.isAdmin}
+      />
     </>
   );
 });
