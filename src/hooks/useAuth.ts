@@ -4,6 +4,8 @@ import { useHistory } from "react-router";
 import { User } from "../types/api/user";
 
 import { useMessage } from "../hooks/useMessage";
+// コンテキストの設定をしたファイル
+import { useLoginUser } from "../hooks/useLoginUser";
 
 // ユーザ認証に関連しているカスタムフックの実装
 
@@ -19,6 +21,9 @@ export const useAuth = () => {
   // カスタムフックにするとこういうのが一元管理できるので便利というお話
   const [loading, setLoading] = useState(false);
 
+  // ログインユーザの情報を管理するためのコンテキストを利用するところ
+  const { setLoginUser } = useLoginUser();
+
   // 変にレンダリングされないように useCallBack を設定
   const login = useCallback(
     (id: string) => {
@@ -30,6 +35,8 @@ export const useAuth = () => {
         .then((res) => {
           // IDまで指定してデータを取得したときに結果があれば
           if (res.data) {
+            // ここでコンテキストにログイン成功したユーザ情報を保持する
+            setLoginUser(res.data);
             // chakra UI の toast という機能を用いてタイトルを表示
             showMessage({ title: "ログインしました！", status: "success" });
             history.push("/home");

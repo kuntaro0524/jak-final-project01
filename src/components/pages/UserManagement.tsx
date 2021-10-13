@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
   Center,
-  Modal,
   Spinner,
   useDisclosure,
   Wrap,
@@ -13,6 +12,7 @@ import { useAllUsers } from "../../hooks/useAllUsers";
 import { UserCard } from "../organisms/layout/user/UserCard";
 import { UserDetailModal } from "../organisms/layout/UserDetailModal";
 import { useSelectUser } from "../../hooks/useSelectUser";
+import { useLoginUser } from "../../hooks/useLoginUser";
 
 export const UserManagement: VFC = memo(() => {
   // カスタムフックの関数から以下の関数やbooleanを取得する
@@ -27,6 +27,10 @@ export const UserManagement: VFC = memo(() => {
 
   // Modalのページをユーザごとに表示するための仕掛け
   const { onSelectUser, selectedUser } = useSelectUser();
+
+  // ログイン情報を保持している context がきちんと参照できているかどうかを確認
+  const { loginUser } = useLoginUser();
+  console.log(loginUser);
 
   // いつModal用のカスタムフックのonOpenを呼ぶか？
   // Userをクリックしたときに onOpen (これはModalで用意されているカスタムフックから受け取る関数)
