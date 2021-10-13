@@ -11,7 +11,9 @@ import { User } from "../types/api/user";
 
 // コンテキストで保持する値とセット関数を定義
 export type LoginUserContextType = {
-  loginUser: User;
+  // ユーザがアドミンかどうかということを保持する boolean もグローバル情報として保持
+  // User　という型に boolean を追加するというのが下のような定義のしかたもできる
+  loginUser: User & { isAdmin: boolean };
   setLoginUser: Dispatch<SetStateAction<User | null>>;
 };
 
