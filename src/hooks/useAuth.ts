@@ -33,13 +33,17 @@ export const useAuth = () => {
       axios
         .get<User>(`https://jsonplaceholder.typicode.com/users/${id}`)
         .then((res) => {
+          // 10のユーザだけアドミンとして設定する記述
+          const isAdmin = res.data.id === 10 ? true : false;
           // IDまで指定してデータを取得したときに結果があれば
           if (res.data) {
             // ここでコンテキストにログイン成功したユーザ情報を保持する
-            setLoginUser(res.data);
+            // 新しくオブジェクトを追加する場合に User 情報 + boolean
+            setLoginUser({ ...res.data, isAdmin });
             // chakra UI の toast という機能を用いてタイトルを表示
             showMessage({ title: "ログインしました！", status: "success" });
             history.push("/home");
+
             // 結果がなければユーザが登録されていない
           } else {
             showMessage({

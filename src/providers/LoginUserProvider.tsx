@@ -9,12 +9,14 @@ import {
 
 import { User } from "../types/api/user";
 
+// 今回はちゃんとユーザ情報を変数名定義して利用していくことにした
+// User　という変数に boolean を追加するときの書き方
+type LoginUser = User & { isAdmin: boolean };
+
 // コンテキストで保持する値とセット関数を定義
 export type LoginUserContextType = {
-  // ユーザがアドミンかどうかということを保持する boolean もグローバル情報として保持
-  // User　という型に boolean を追加するというのが下のような定義のしかたもできる
-  loginUser: User & { isAdmin: boolean };
-  setLoginUser: Dispatch<SetStateAction<User | null>>;
+  loginUser: LoginUser | null;
+  setLoginUser: Dispatch<SetStateAction<LoginUser | null>>;
 };
 
 // まずはコンテキストを作成していく
@@ -29,7 +31,7 @@ export const LoginUserContext = createContext<LoginUserContextType>(
 export const LoginUserProvider = (props: { children: ReactNode }) => {
   const { children } = props;
   // 管理したい情報について定義を useState で行っていく
-  const [loginUser, setLoginUser] = useState<User | null>(null);
+  const [loginUser, setLoginUser] = useState<LoginUser | null>(null);
   return (
     // コンテキストとして扱えるように useState で管理している情報を provider に渡してあげる
     // コンテキストに設定した数値は変更あるたびに関連するコンポーネントが再レンダリングされるのが要注意
